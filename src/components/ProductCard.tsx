@@ -19,7 +19,7 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         onMouseLeave={() => setHovered(false)}
         className="flex h-full w-full flex-col items-start gap-2 rounded-xl border border-slate-200 bg-white px-5 py-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-okta-blue/40 hover:shadow-md"
       >
-        <span className="font-heading text-lg font-semibold text-slate-900">{product.name}</span>
+        <span className="text-lg font-semibold text-slate-900">{product.name}</span>
       </button>
       {hovered && <ProductTooltip product={product} />}
     </div>
