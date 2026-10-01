@@ -1,17 +1,32 @@
 import { useState } from "react";
 import { Header } from "./components/Header";
 import { NexusGeminiBanner } from "./components/NexusGeminiBanner";
-import { ProductSidebar } from "./components/ProductSidebar";
+import { ProductDetailHeader } from "./components/ProductDetailHeader";
+import { ProductGrid } from "./components/ProductGrid";
 import { ResourceColumn } from "./components/ResourceColumn";
 import { SourcesStrip } from "./components/SourcesStrip";
-import { TagFilter } from "./components/TagFilter";
+import { TagFilterDropdown } from "./components/TagFilterDropdown";
 import { products, type ResourceTag } from "./data/products";
 import { sources } from "./data/sources";
 
+type View = "home" | "product";
+
 function App() {
-  const [activeId, setActiveId] = useState(products[0].id);
+  const [view, setView] = useState<View>("home");
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [activeTags, setActiveTags] = useState<ResourceTag[]>([]);
-  const activeProduct = products.find((p) => p.id === activeId) ?? products[0];
+
+  const activeProduct = products.find((p) => p.id === activeId) ?? null;
+
+  function openProduct(id: string) {
+    setActiveId(id);
+    setView("product");
+  }
+
+  function goHome() {
+    setView("home");
+    setActiveTags([]);
+  }
 
   function toggleTag(tag: ResourceTag) {
     setActiveTags((prev) =>
@@ -21,19 +36,19 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      <Header onLogoClick={goHome} />
 
       <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-6 py-8">
         <NexusGeminiBanner />
 
-        <div className="flex flex-col gap-8 md:flex-row">
-          <ProductSidebar products={products} activeId={activeId} onSelect={setActiveId} />
-
-          <div className="flex-1">
-            <h2 className="mb-4 text-lg font-semibold text-slate-900">{activeProduct.name}</h2>
+        {view === "home" || !activeProduct ? (
+          <ProductGrid products={products} onSelect={openProduct} />
+        ) : (
+          <div>
+            <ProductDetailHeader product={activeProduct} onBack={goHome} />
 
             <div className="mb-6">
-              <TagFilter
+              <TagFilterDropdown
                 activeTags={activeTags}
                 onToggle={toggleTag}
                 onClear={() => setActiveTags([])}
@@ -53,7 +68,7 @@ function App() {
               />
             </div>
           </div>
-        </div>
+        )}
       </main>
 
       <SourcesStrip sources={sources} />

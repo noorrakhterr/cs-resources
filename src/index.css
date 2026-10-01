@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-okta-blue: #007dc1;
-  --color-okta-blue-dark: #005e91;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-okta-blue: #0131ff;
+  --color-okta-blue-dark: #0025c7;
+  --color-okta-ink: #1e1e1e;
+  --color-okta-cream: #fbfbfa;
+  --color-okta-navy: #0a0e2a;
+  --font-heading: "Playfair Display", serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
   @apply bg-slate-50 text-slate-900;
+  font-family: var(--font-sans);
 }
