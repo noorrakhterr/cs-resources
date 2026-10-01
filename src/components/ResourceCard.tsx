@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { ResourceLink } from "../data/products";
 
-export function ResourceCard({ title, description, url, tags, subLinks }: ResourceLink) {
+export function ResourceCard({ title, description, url, tags, subLinks, productName }: ResourceLink) {
   const [expanded, setExpanded] = useState(false);
   const isPlaceholder = url === "#";
   const hasSubLinks = !!subLinks?.length;
@@ -51,8 +51,13 @@ export function ResourceCard({ title, description, url, tags, subLinks }: Resour
         {isPlaceholder && (
           <p className="mt-1 text-xs italic text-slate-400">Link coming soon</p>
         )}
-        {tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1">
+        {(tags.length > 0 || productName) && (
+          <div className="mt-2 flex flex-wrap items-center gap-1">
+            {productName && (
+              <span className="rounded-full bg-okta-blue/10 px-2 py-0.5 text-[10px] font-medium text-okta-blue">
+                {productName}
+              </span>
+            )}
             {tags.map((tag) => (
               <span
                 key={tag}

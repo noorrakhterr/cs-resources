@@ -9,7 +9,6 @@ type ProductCardProps = {
 
 export function ProductCard({ product, onSelect }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
-  const resourceCount = product.customerFacing.length + product.internal.length;
 
   return (
     <div className="relative">
@@ -21,9 +20,6 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         className="flex h-full w-full flex-col items-start gap-2 rounded-xl border border-slate-200 bg-white px-5 py-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-okta-blue/40 hover:shadow-md"
       >
         <span className="font-heading text-lg font-semibold text-slate-900">{product.name}</span>
-        <span className="text-xs text-slate-400">
-          {resourceCount === 0 ? "Resources coming soon" : `${resourceCount} resources`}
-        </span>
       </button>
       {hovered && <ProductTooltip product={product} />}
     </div>

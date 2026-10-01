@@ -1,11 +1,10 @@
-import type { Product } from "../data/products";
-
-type ProductDetailHeaderProps = {
-  product: Product;
+type SectionHeaderProps = {
+  title: string;
   onBack: () => void;
+  backLabel?: string;
 };
 
-export function ProductDetailHeader({ product, onBack }: ProductDetailHeaderProps) {
+export function SectionHeader({ title, onBack, backLabel = "All products" }: SectionHeaderProps) {
   return (
     <div className="mb-6">
       <button
@@ -25,10 +24,9 @@ export function ProductDetailHeader({ product, onBack }: ProductDetailHeaderProp
         >
           <path d="M15 18 9 12 15 6" />
         </svg>
-        All products
+        {backLabel}
       </button>
-      <h2 className="font-heading text-2xl font-semibold text-slate-900">{product.name}</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{product.description}</p>
+      <h2 className="font-heading text-2xl font-semibold text-slate-900">{title}</h2>
     </div>
   );
 }

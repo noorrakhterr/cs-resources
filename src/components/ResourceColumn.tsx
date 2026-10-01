@@ -2,7 +2,7 @@ import type { ResourceLink, ResourceTag } from "../data/products";
 import { ResourceCard } from "./ResourceCard";
 
 type ResourceColumnProps = {
-  title: string;
+  title?: string;
   links: ResourceLink[];
   activeTags: ResourceTag[];
 };
@@ -18,9 +18,11 @@ export function ResourceColumn({ title, links, activeTags }: ResourceColumnProps
 
   return (
     <div className="flex-1">
-      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-        {title}
-      </h3>
+      {title && (
+        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          {title}
+        </h3>
+      )}
       {links.length === 0 ? (
         <p className="text-sm italic text-slate-400">Resources coming soon.</p>
       ) : filtered.length === 0 ? (
