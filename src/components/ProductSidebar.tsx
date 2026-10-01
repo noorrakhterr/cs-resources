@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { Product } from "../data/products";
+import { ProductTooltip } from "./ProductTooltip";
 
 type ProductSidebarProps = {
   products: Product[];
@@ -7,6 +9,9 @@ type ProductSidebarProps = {
 };
 
 export function ProductSidebar({ products, activeId, onSelect }: ProductSidebarProps) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const hoveredProduct = products.find((p) => p.id === hoveredId);
+
   return (
     <nav className="w-full shrink-0 md:w-64">
       <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
@@ -16,10 +21,12 @@ export function ProductSidebar({ products, activeId, onSelect }: ProductSidebarP
         {products.map((product) => {
           const isActive = product.id === activeId;
           return (
-            <li key={product.id}>
+            <li key={product.id} className="relative">
               <button
                 type="button"
                 onClick={() => onSelect(product.id)}
+                onMouseEnter={() => setHoveredId(product.id)}
+                onMouseLeave={() => setHoveredId(null)}
                 className={
                   "w-full rounded-md px-3 py-2 text-left text-sm font-medium transition-colors " +
                   (isActive
@@ -29,6 +36,7 @@ export function ProductSidebar({ products, activeId, onSelect }: ProductSidebarP
               >
                 {product.name}
               </button>
+              {hoveredProduct?.id === product.id && <ProductTooltip product={hoveredProduct} />}
             </li>
           );
         })}
