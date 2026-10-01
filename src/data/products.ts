@@ -8,7 +8,8 @@ export type ResourceTag =
   | "Blog/Article"
   | "Learning Path"
   | "Training/Course"
-  | "Sales Enablement";
+  | "Sales Enablement"
+  | "Office Hours";
 
 export const RESOURCE_TAGS: ResourceTag[] = [
   "Documentation",
@@ -21,7 +22,22 @@ export const RESOURCE_TAGS: ResourceTag[] = [
   "Learning Path",
   "Training/Course",
   "Sales Enablement",
+  "Office Hours",
 ];
+
+export const TAG_COLORS: Record<ResourceTag, string> = {
+  Documentation: "bg-sky-100 text-sky-700",
+  Datasheet: "bg-indigo-100 text-indigo-700",
+  "Implementation Guide": "bg-amber-100 text-amber-700",
+  "Slide Deck": "bg-purple-100 text-purple-700",
+  Demo: "bg-rose-100 text-rose-700",
+  Tutorial: "bg-teal-100 text-teal-700",
+  "Blog/Article": "bg-orange-100 text-orange-700",
+  "Learning Path": "bg-emerald-100 text-emerald-700",
+  "Training/Course": "bg-cyan-100 text-cyan-700",
+  "Sales Enablement": "bg-fuchsia-100 text-fuchsia-700",
+  "Office Hours": "bg-lime-100 text-lime-700",
+};
 
 export type ResourceLink = {
   title: string;
@@ -52,12 +68,6 @@ export const products: Product[] = [
       "A general onboarding entry point for new CSMs and admins — not tied to a single product. Covers self-service resources by Premier package tier and the admin launch kit.",
     customerFacing: [],
     internal: [
-      {
-        title: "Self-Service Resources by Premier Package",
-        description: "Slide deck breaking down self-service resources available by Premier package tier.",
-        url: "https://docs.google.com/presentation/d/1JQ8U0kXzI9FzIfvsudN1J009e7Z0lbN0Vq9A87HZ97k/edit?slide=id.g3f0a4cf0695_0_4080#slide=id.g3f0a4cf0695_0_4080",
-        tags: ["Implementation Guide"],
-      },
       {
         title: "Launch Kit for Okta Admins",
         description: "Starter kit of resources for admins launching Okta at a new customer.",
@@ -232,7 +242,7 @@ export const products: Product[] = [
         title: "Workflows Office Hours",
         description: "Recurring community office hours for Okta Workflows.",
         url: "https://okta.zoom.us/zbook/okta-workflows/community-office-hours",
-        tags: ["Training/Course"],
+        tags: ["Office Hours"],
       },
       {
         title: "Workflows Docs",
@@ -526,6 +536,12 @@ export const products: Product[] = [
       "Okta Identity Governance (OIG) helps organizations manage who has access to what, with access requests, certification campaigns, and separation-of-duties checks — supporting compliance and audit requirements around access governance.",
     customerFacing: [
       {
+        title: "OIG Office Hours",
+        description: "Recurring office hours for Okta Identity Governance.",
+        url: "https://okta.zoom.us/zbook/okta-identity-governance",
+        tags: ["Office Hours"],
+      },
+      {
         title: "YouTube Playlist",
         description: "Playlist of videos covering Okta Identity Governance.",
         url: "https://www.youtube.com/watch?v=Qh2vC7DCbbY&list=PLIid085fSVdssO1Z8YFZ23G3yXY9oYVCt",
@@ -643,6 +659,12 @@ export const products: Product[] = [
         tags: ["Documentation"],
       },
       {
+        title: "Device Access Office Hours",
+        description: "Recurring customer 1:1 office hours for Okta Device Access.",
+        url: "https://okta.zoom.us/zbook/d/o79wnrmr/okta-da-customer-1-1-office-hours",
+        tags: ["Office Hours"],
+      },
+      {
         title: "ODA Learning Path",
         description: "Collection of learning paths covering Device Access setup and management.",
         url: "https://learning.okta.com/path/secure-local-device-data-with-okta-device-access",
@@ -685,6 +707,12 @@ export const products: Product[] = [
     description:
       "Identity Security Posture Management (ISMP) continuously scans an org's Okta and connected app configuration for identity-related security gaps and misconfigurations, giving admins prioritized recommendations to reduce their identity attack surface.",
     customerFacing: [
+      {
+        title: "ISMP Office Hours",
+        description: "Recurring customer office hours for Identity Security Posture Management.",
+        url: "https://okta.zoom.us/zbook/d/0wrojvcd/okta-ispm-customer-office-hours",
+        tags: ["Office Hours"],
+      },
       {
         title: "First 5 Steps With ISMP",
         description: "Quick-start guide for the first five steps after enabling ISMP.",
@@ -787,7 +815,14 @@ export const products: Product[] = [
         tags: ["Slide Deck"],
       },
     ],
-    internal: [],
+    internal: [
+      {
+        title: "OIE Office Hours",
+        description: "Internal-only 1:1 office hours for the OIE upgrade.",
+        url: "https://okta.zoom.us/zbook/d/ttdx-7n5/oie-internal-1-1-office-hours",
+        tags: ["Office Hours"],
+      },
+    ],
   },
   {
     id: "identity-maturity",

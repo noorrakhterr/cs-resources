@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ResourceLink } from "../data/products";
+import { TAG_COLORS, type ResourceLink } from "../data/products";
 
 export function ResourceCard({ title, description, url, tags, subLinks, productName }: ResourceLink) {
   const [expanded, setExpanded] = useState(false);
@@ -61,7 +61,7 @@ export function ResourceCard({ title, description, url, tags, subLinks, productN
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-500"
+                className={"rounded-full px-2 py-0.5 text-[10px] font-medium " + TAG_COLORS[tag]}
               >
                 {tag}
               </span>

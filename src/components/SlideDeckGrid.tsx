@@ -17,7 +17,7 @@ export function SlideDeckGrid({ resources }: SlideDeckGridProps) {
           href={resource.url}
           target="_blank"
           rel="noreferrer"
-          className="flex h-full w-full flex-col items-start gap-1 rounded-xl border border-slate-200 bg-white px-5 py-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-okta-blue/40 hover:shadow-md"
+          className="flex h-full min-h-28 w-full flex-col items-start justify-center gap-1 rounded-xl border border-slate-200 bg-white px-5 py-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-okta-blue/40 hover:shadow-md"
         >
           <span className="text-lg font-semibold text-slate-900">{resource.productName}</span>
         </a>
