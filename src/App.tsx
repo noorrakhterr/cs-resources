@@ -6,6 +6,7 @@ import { QuickResourceGrid } from "./components/QuickResourceGrid";
 import { ResourceCenter } from "./components/ResourceCenter";
 import { ResourceColumn } from "./components/ResourceColumn";
 import { SectionHeader } from "./components/SectionHeader";
+import { SlideDeckGrid } from "./components/SlideDeckGrid";
 import { TagFilterDropdown } from "./components/TagFilterDropdown";
 import { products, type ResourceTag } from "./data/products";
 import { quickResources } from "./data/quickResources";
@@ -88,15 +89,21 @@ function App() {
           <div>
             <SectionHeader title={activeQuickGroup.name} onBack={goHome} backLabel="Home" />
 
-            <div className="mb-6">
-              <TagFilterDropdown
-                activeTags={activeTags}
-                onToggle={toggleTag}
-                onClear={() => setActiveTags([])}
-              />
-            </div>
+            {activeQuickGroup.id === "slide-decks" ? (
+              <SlideDeckGrid resources={activeQuickGroup.resources} />
+            ) : (
+              <>
+                <div className="mb-6">
+                  <TagFilterDropdown
+                    activeTags={activeTags}
+                    onToggle={toggleTag}
+                    onClear={() => setActiveTags([])}
+                  />
+                </div>
 
-            <ResourceColumn links={activeQuickGroup.resources} activeTags={activeTags} />
+                <ResourceColumn links={activeQuickGroup.resources} activeTags={activeTags} />
+              </>
+            )}
           </div>
         )}
       </main>

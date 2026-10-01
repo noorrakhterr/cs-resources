@@ -35,6 +35,8 @@ export type ResourceLink = {
 export type Product = {
   id: string;
   name: string;
+  // Acronym spelled out in full, for contexts that shouldn't assume familiarity (e.g. Slide Deck Repository).
+  fullName: string;
   // AI-drafted from general product knowledge, not sourced from the resource doc — please review/edit.
   description: string;
   customerFacing: ResourceLink[];
@@ -45,6 +47,7 @@ export const products: Product[] = [
   {
     id: "getting-started",
     name: "Getting Started",
+    fullName: "Getting Started",
     description:
       "A general onboarding entry point for new CSMs and admins — not tied to a single product. Covers self-service resources by Premier package tier and the admin launch kit.",
     customerFacing: [],
@@ -66,6 +69,7 @@ export const products: Product[] = [
   {
     id: "fastpass",
     name: "FastPass",
+    fullName: "Okta FastPass",
     description:
       "Okta FastPass is Okta's phishing-resistant passwordless authentication factor, letting users sign in with device-based biometrics or PIN instead of a password. It's a core building block of Okta's broader passwordless and phishing-resistant authentication strategy.",
     customerFacing: [
@@ -149,6 +153,7 @@ export const products: Product[] = [
   {
     id: "amfa-device-assurance",
     name: "AMFA / Device Assurance",
+    fullName: "Adaptive Multi-Factor Authentication / Device Assurance",
     description:
       "Adaptive Multi-Factor Authentication (AMFA) applies context-aware policies to step up or adjust authentication requirements based on risk signals. Device Assurance extends this by checking device posture (OS version, encryption, screen lock, etc.) as a condition of access, strengthening security without always requiring extra user friction.",
     customerFacing: [
@@ -207,6 +212,7 @@ export const products: Product[] = [
   {
     id: "workflows",
     name: "Workflows",
+    fullName: "Okta Workflows",
     description:
       "Okta Workflows is a no-code automation engine for identity processes — building flows that trigger on events (like a new hire being created) and chain together actions across Okta and connected apps. It's commonly used to automate provisioning, lifecycle, and governance tasks without custom scripting.",
     customerFacing: [
@@ -297,6 +303,7 @@ export const products: Product[] = [
   {
     id: "lcm",
     name: "LCM",
+    fullName: "Lifecycle Management",
     description:
       "Lifecycle Management (LCM) automates the provisioning and deprovisioning of user accounts and access as people join, move within, or leave an organization (JML — joiner/mover/leaver). It keeps user profiles and app access in sync with HR and other source-of-truth systems, reducing manual admin work and access sprawl.",
     customerFacing: [
@@ -409,6 +416,7 @@ export const products: Product[] = [
   {
     id: "ud-sso",
     name: "UD/SSO",
+    fullName: "Universal Directory / Single Sign-On",
     description:
       "Universal Directory (UD) is Okta's flexible user profile and attribute store, letting admins define, map, and organize user data from multiple sources. Single Sign-On (SSO) sits on top of it, giving users one set of credentials to access all their connected applications through Okta.",
     customerFacing: [
@@ -504,6 +512,7 @@ export const products: Product[] = [
   {
     id: "itp",
     name: "ITP",
+    fullName: "Identity Threat Protection",
     description:
       "Identity Threat Protection (ITP) continuously evaluates risk signals after a user has already authenticated, detecting account takeover and session hijacking in progress and automatically responding — e.g. prompting re-authentication or terminating a session.",
     customerFacing: [],
@@ -512,6 +521,7 @@ export const products: Product[] = [
   {
     id: "oig",
     name: "OIG",
+    fullName: "Okta Identity Governance",
     description:
       "Okta Identity Governance (OIG) helps organizations manage who has access to what, with access requests, certification campaigns, and separation-of-duties checks — supporting compliance and audit requirements around access governance.",
     customerFacing: [
@@ -589,6 +599,7 @@ export const products: Product[] = [
   {
     id: "opa",
     name: "OPA",
+    fullName: "Okta Privileged Access",
     description:
       "Okta Privileged Access (OPA) extends identity governance to privileged accounts and infrastructure (servers, databases), providing just-in-time access, session management, and credential vaulting for high-risk administrative access.",
     customerFacing: [],
@@ -597,6 +608,7 @@ export const products: Product[] = [
   {
     id: "oda",
     name: "ODA",
+    fullName: "Okta Device Access",
     description:
       "Okta Device Access (ODA) brings identity-aware security to the local device login — syncing Okta credentials and policy to the OS login screen (including offline) and enabling passwordless, phishing-resistant desktop sign-in alongside Okta's cloud policies.",
     customerFacing: [
@@ -669,6 +681,7 @@ export const products: Product[] = [
   {
     id: "ismp",
     name: "ISMP",
+    fullName: "Identity Security Posture Management",
     description:
       "Identity Security Posture Management (ISMP) continuously scans an org's Okta and connected app configuration for identity-related security gaps and misconfigurations, giving admins prioritized recommendations to reduce their identity attack surface.",
     customerFacing: [
@@ -757,6 +770,7 @@ export const products: Product[] = [
   {
     id: "oie-upgrade",
     name: "OIE Upgrade",
+    fullName: "Okta Identity Engine Upgrade",
     description:
       "Okta Identity Engine (OIE) is the modern, policy-driven architecture underpinning current Okta products, replacing the legacy Classic Engine. This section covers resources for guiding customers through the Classic-to-OIE upgrade.",
     customerFacing: [
@@ -778,6 +792,7 @@ export const products: Product[] = [
   {
     id: "identity-maturity",
     name: "Identity Maturity",
+    fullName: "Identity Maturity",
     description:
       "Identity Maturity resources help assess where a customer sits on their identity journey — from basic SSO/MFA to full lifecycle automation and governance — and plan a roadmap to the next stage.",
     customerFacing: [
@@ -822,8 +837,8 @@ export function getResourcesByTag(tag: ResourceTag): ResourceLink[] {
   }
 
   for (const product of products) {
-    collect(product.customerFacing, product.name);
-    collect(product.internal, product.name);
+    collect(product.customerFacing, product.fullName);
+    collect(product.internal, product.fullName);
   }
 
   return out;
