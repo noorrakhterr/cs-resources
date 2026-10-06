@@ -814,6 +814,18 @@ export const products: Product[] = [
         url: "https://okta.highspot.com/items/64c92726f09ba1d44767e450#4",
         tags: ["Slide Deck"],
       },
+      {
+        title: "OIE Upgrade Guide",
+        description: "Guide walking through the Classic-to-OIE upgrade process.",
+        url: "https://okta.highspot.com/items/6aad9a82ceefcd69a688e24a?lfrm=shp.0#1",
+        tags: ["Implementation Guide"],
+      },
+      {
+        title: "Calendar View for OIE Upgrades",
+        description: "Shared calendar tracking scheduled OIE upgrade dates.",
+        url: "https://calendar.google.com/calendar/u/0?cid=Y185NDI5OGY0YTk4NWY5MzZlNzlmYjMxY2YzYWRhNzlkZmVjYmI5ZWQ1NDgxOTFlYTZkOTZmZDVlN2RjYjlhOWRjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20",
+        tags: ["Documentation"],
+      },
     ],
     internal: [
       {
