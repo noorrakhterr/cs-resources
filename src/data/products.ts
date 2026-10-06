@@ -6,8 +6,7 @@ export type ResourceTag =
   | "Demo"
   | "Tutorial"
   | "Blog/Article"
-  | "Learning Path"
-  | "Training/Course"
+  | "Learning & Training"
   | "Sales Enablement"
   | "Office Hours";
 
@@ -19,8 +18,7 @@ export const RESOURCE_TAGS: ResourceTag[] = [
   "Demo",
   "Tutorial",
   "Blog/Article",
-  "Learning Path",
-  "Training/Course",
+  "Learning & Training",
   "Sales Enablement",
   "Office Hours",
 ];
@@ -33,11 +31,24 @@ export const TAG_COLORS: Record<ResourceTag, string> = {
   Demo: "bg-rose-100 text-rose-700",
   Tutorial: "bg-teal-100 text-teal-700",
   "Blog/Article": "bg-orange-100 text-orange-700",
-  "Learning Path": "bg-emerald-100 text-emerald-700",
-  "Training/Course": "bg-cyan-100 text-cyan-700",
+  "Learning & Training": "bg-emerald-100 text-emerald-700",
   "Sales Enablement": "bg-fuchsia-100 text-fuchsia-700",
   "Office Hours": "bg-lime-100 text-lime-700",
 };
+
+// Fixed display order for bunching resources of the same category together.
+export const TAG_SORT_ORDER: ResourceTag[] = [
+  "Office Hours",
+  "Sales Enablement",
+  "Implementation Guide",
+  "Learning & Training",
+  "Documentation",
+  "Datasheet",
+  "Slide Deck",
+  "Demo",
+  "Tutorial",
+  "Blog/Article",
+];
 
 export type ResourceLink = {
   title: string;
@@ -87,7 +98,7 @@ export const products: Product[] = [
         title: "Learning Path: Implement Passwordless Authentication",
         description: "Guided learning path covering end-to-end passwordless setup.",
         url: "https://learning.okta.com/path/implement-passwordless-authentication",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
       },
       {
         title: "Step-By-Step Guide to Implementing FastPass",
@@ -272,31 +283,31 @@ export const products: Product[] = [
         title: "Workflows Learning Paths",
         description: "Certification and skill-building learning paths for Workflows.",
         url: "https://learning.okta.com/page/workflows-series-i",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
         subLinks: [
           {
             title: "Workflows I (Certification Series)",
             description: "First course in the Workflows certification series.",
             url: "https://learning.okta.com/page/workflows-series-i",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Automate User Lifecycle Management With Workflows",
             description: "Learning path on automating lifecycle management tasks with Workflows.",
             url: "https://learning.okta.com/path/automate-user-lifecycle-management-with-workflows",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Automate Identity Security With Workflows",
             description: "Learning path on automating identity security tasks with Workflows.",
             url: "https://learning.okta.com/path/automate-identity-security-with-workflows",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Streamline Identity Governance With Workflows",
             description: "Learning path on using Workflows to streamline governance processes.",
             url: "https://learning.okta.com/path/streamline-identity-governance-with-workflows",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
         ],
       },
@@ -369,13 +380,13 @@ export const products: Product[] = [
         title: "LCM Learning Path - Automate User Provisioning",
         description: "Learning path on automating user provisioning with LCM.",
         url: "https://learning.okta.com/path/automate-user-provisioning",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
       },
       {
         title: "LCM Security Essentials",
         description: "Course covering security essentials for Lifecycle Management.",
         url: "https://okta.csod.com/ui/lms-learning-details/app/course/93030520-6af3-4760-981a-5c73c9736246",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
     ],
     internal: [
@@ -389,7 +400,7 @@ export const products: Product[] = [
         title: "LCM Spotlight Session",
         description: "Security essentials: LCM toolkit for CTAs.",
         url: "https://oktau.edcast.com/insights/spotlight-session-security-essentials-lcm-toolkit-ctas",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
       {
         title: "LCM Security Essentials Toolkit",
@@ -470,49 +481,49 @@ export const products: Product[] = [
         title: "SSO Learning Path",
         description: "Learning path on creating app integrations for SSO.",
         url: "https://learning.okta.com/path/create-app-integrations",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
       },
       {
         title: "UD Learning Paths",
         description: "Collection of learning paths covering Universal Directory fundamentals.",
         url: "https://learning.okta.com/path/define-your-users-in-okta",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
         subLinks: [
           {
             title: "Define Your Users in Okta",
             description: "Learning path on defining user profiles in Okta.",
             url: "https://learning.okta.com/path/define-your-users-in-okta",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Integrate With Active Directory",
             description: "Learning path on integrating Okta with Active Directory.",
             url: "https://learning.okta.com/path/integrate-with-active-directory",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Manage User Profiles in Universal Directory",
             description: "Learning path on managing user profiles in UD.",
             url: "https://learning.okta.com/path/manage-user-profiles-in-ud",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Organize Users With Groups",
             description: "Learning path on organizing users into groups.",
             url: "https://learning.okta.com/path/organize-users-with-groups",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Define Okta Administrators",
             description: "Learning path on defining and scoping Okta administrator roles.",
             url: "https://learning.okta.com/path/define-okta-administrators",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Extend Administrator Operations",
             description: "Learning path on extending administrator operations in Okta.",
             url: "https://learning.okta.com/path/extend-administrator-operations",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
         ],
       },
@@ -525,7 +536,14 @@ export const products: Product[] = [
     fullName: "Identity Threat Protection",
     description:
       "Identity Threat Protection (ITP) continuously evaluates risk signals after a user has already authenticated, detecting account takeover and session hijacking in progress and automatically responding — e.g. prompting re-authentication or terminating a session.",
-    customerFacing: [],
+    customerFacing: [
+      {
+        title: "ITP Office Hours",
+        description: "Recurring customer office hours for Identity Threat Protection.",
+        url: "https://calendly.com/okta-identity-threat-protection/customer-office-hours?back=1&month=2026-10",
+        tags: ["Office Hours"],
+      },
+    ],
     internal: [],
   },
   {
@@ -607,7 +625,7 @@ export const products: Product[] = [
         title: "OIG Learning Path",
         description: "Learning path covering OIG foundations.",
         url: "https://learning.okta.com/path/examine-okta-identity-governance-oig-foundations",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
       },
     ],
     internal: [],
@@ -618,7 +636,20 @@ export const products: Product[] = [
     fullName: "Okta Privileged Access",
     description:
       "Okta Privileged Access (OPA) extends identity governance to privileged accounts and infrastructure (servers, databases), providing just-in-time access, session management, and credential vaulting for high-risk administrative access.",
-    customerFacing: [],
+    customerFacing: [
+      {
+        title: "Privileged Access Office Hours",
+        description: "Recurring customer 1:1 office hours for Okta Privileged Access (AMER/PST).",
+        url: "https://okta.zoom.us/zbook/d/vdux0wkh/okta-pa-customer-1-1-office-hours--amer-pst",
+        tags: ["Office Hours"],
+      },
+      {
+        title: "O4AA 1-on-1 Office Hours",
+        description: "Recurring 1-on-1 office hours for O4AA.",
+        url: "https://okta.zoom.us/zbook/brent-arrington/o4aa-1-on-1",
+        tags: ["Office Hours"],
+      },
+    ],
     internal: [],
   },
   {
@@ -668,25 +699,25 @@ export const products: Product[] = [
         title: "ODA Learning Path",
         description: "Collection of learning paths covering Device Access setup and management.",
         url: "https://learning.okta.com/path/secure-local-device-data-with-okta-device-access",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
         subLinks: [
           {
             title: "Get Started With Okta Device Access",
             description: "Learning path for getting started with Device Access.",
             url: "https://learning.okta.com/path/secure-local-device-data-with-okta-device-access",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Manage BYOD via Identity-Aware Integration",
             description: "Learning path on managing BYOD devices with identity-aware policies.",
             url: "https://learning.okta.com/path/manage-byod-via-identity-aware-integration",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
           {
             title: "Optimize Device Security and Management",
             description: "Learning path on optimizing device security and management practices.",
             url: "https://learning.okta.com/path/optimize-device-security-and-management",
-            tags: ["Learning Path"],
+            tags: ["Learning & Training"],
           },
         ],
       },
@@ -747,7 +778,7 @@ export const products: Product[] = [
         title: "ISMP Learning Path",
         description: "Learning path covering ISMP fundamentals.",
         url: "https://help.okta.com/ispm/en-us/content/topics/ispm/home.htm",
-        tags: ["Learning Path"],
+        tags: ["Learning & Training"],
       },
     ],
     internal: [
@@ -785,13 +816,13 @@ export const products: Product[] = [
         title: "ISMP Course for Navigating Customer Conversations",
         description: "Course on handling ISMP customer conversations.",
         url: "https://okta.highspot.com/items/667edc135fd7802e3aadcdf2#/training/learner",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
       {
         title: "ISMP Course",
         description: "Core training course covering ISMP.",
         url: "https://okta.csod.com/ui/lms-learning-details/app/course/e5a1a663-c5fb-4de0-9c5f-5c1b6e497c02",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
     ],
   },
@@ -861,13 +892,13 @@ export const products: Product[] = [
         title: "Identity Maturity 101 Class",
         description: "Foundational training on identity maturity concepts.",
         url: "https://okta.csod.com/ui/lms-learning-details/app/course/c99e2901-2e23-4fe0-9141-dba6dcdf0dfd",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
       {
         title: "Identity Maturity 201 Class",
         description: "Advanced training on identity maturity concepts.",
         url: "https://okta.csod.com/ui/lms-learning-details/app/course/75c82008-ffee-476e-b796-8974057e7824",
-        tags: ["Training/Course"],
+        tags: ["Learning & Training"],
       },
     ],
   },

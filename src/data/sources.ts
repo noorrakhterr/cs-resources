@@ -3,11 +3,9 @@ export type Source = {
   url: string;
 };
 
-// TODO: Replace with the real places the team pulls resources from.
 export const sources: Source[] = [
-  { name: "Okta Help Center", url: "#" },
-  { name: "Highspot", url: "#" },
-  { name: "Confluence", url: "#" },
-  { name: "Product Documentation", url: "#" },
-  { name: "Okta University", url: "#" },
+  { name: "Okta Help Center", url: "https://support.okta.com/help/s/?language=en_US" },
+  { name: "Highspot", url: "https://okta.highspot.com/" },
+  { name: "Confluence", url: "https://oktainc.atlassian.net/wiki" },
+  { name: "Product Documentation", url: "https://help.okta.com/en-us/content/index.htm" },
 ];

@@ -92,17 +92,11 @@ function App() {
             {activeQuickGroup.id === "slide-decks" ? (
               <SlideDeckGrid resources={activeQuickGroup.resources} />
             ) : (
-              <>
-                <div className="mb-6">
-                  <TagFilterDropdown
-                    activeTags={activeTags}
-                    onToggle={toggleTag}
-                    onClear={() => setActiveTags([])}
-                  />
-                </div>
-
-                <ResourceColumn links={activeQuickGroup.resources} activeTags={activeTags} />
-              </>
+              <ResourceColumn
+                links={activeQuickGroup.resources}
+                activeTags={[]}
+                showTags={false}
+              />
             )}
           </div>
         )}

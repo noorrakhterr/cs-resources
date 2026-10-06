@@ -1,10 +1,28 @@
 import { useState } from "react";
 import { TAG_COLORS, type ResourceLink } from "../data/products";
 
-export function ResourceCard({ title, description, url, tags, subLinks, productName }: ResourceLink) {
+type ResourceCardProps = ResourceLink & {
+  showTags?: boolean;
+};
+
+export function ResourceCard({
+  title,
+  description,
+  url,
+  tags,
+  subLinks,
+  productName,
+  showTags = true,
+}: ResourceCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isPlaceholder = url === "#";
   const hasSubLinks = !!subLinks?.length;
+
+  const relatedLabel = tags.includes("Learning & Training")
+    ? "Most Helpful Paths"
+    : tags.includes("Documentation")
+      ? "Most Helpful Docs"
+      : "Related Links";
 
   return (
     <div>
@@ -51,7 +69,7 @@ export function ResourceCard({ title, description, url, tags, subLinks, productN
         {isPlaceholder && (
           <p className="mt-1 text-xs italic text-slate-400">Link coming soon</p>
         )}
-        {(tags.length > 0 || productName) && (
+        {showTags && (tags.length > 0 || productName) && (
           <div className="mt-2 flex flex-wrap items-center gap-1">
             {productName && (
               <span className="rounded-full bg-okta-blue/10 px-2 py-0.5 text-[10px] font-medium text-okta-blue">
@@ -89,13 +107,13 @@ export function ResourceCard({ title, description, url, tags, subLinks, productN
             >
               <path d="M9 18 15 12 9 6" />
             </svg>
-            {expanded ? "Hide" : "Show"} {subLinks!.length} related link{subLinks!.length > 1 ? "s" : ""}
+            {expanded ? "Hide" : "Show"} {relatedLabel}
           </button>
 
           {expanded && (
             <div className="ml-4 mt-1 space-y-2 border-l border-slate-200 pl-3">
               {subLinks!.map((sub) => (
-                <ResourceCard key={sub.title} {...sub} />
+                <ResourceCard key={sub.title} {...sub} showTags={showTags} />
               ))}
             </div>
           )}
