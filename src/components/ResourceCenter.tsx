@@ -7,7 +7,7 @@ type ResourceCenterProps = {
 export function ResourceCenter({ sources }: ResourceCenterProps) {
   return (
     <div>
-      <h2 className="mb-3 font-heading text-xl font-semibold text-slate-900">Resource Center</h2>
+      <h2 className="mb-3 font-heading text-xl font-semibold text-okta-navy">Resource Sources</h2>
       <div className="flex flex-wrap gap-2">
         {sources.map((source) => (
           <a
