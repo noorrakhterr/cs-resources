@@ -7,7 +7,8 @@ export type ResourceTag =
   | "Tutorial"
   | "Blog/Article"
   | "Learning & Training"
-  | "Sales Enablement"
+  | "Enablement"
+  | "AI Tools"
   | "Office Hours";
 
 export const RESOURCE_TAGS: ResourceTag[] = [
@@ -19,7 +20,8 @@ export const RESOURCE_TAGS: ResourceTag[] = [
   "Tutorial",
   "Blog/Article",
   "Learning & Training",
-  "Sales Enablement",
+  "Enablement",
+  "AI Tools",
   "Office Hours",
 ];
 
@@ -32,14 +34,16 @@ export const TAG_COLORS: Record<ResourceTag, string> = {
   Tutorial: "bg-teal-100 text-teal-700",
   "Blog/Article": "bg-orange-100 text-orange-700",
   "Learning & Training": "bg-emerald-100 text-emerald-700",
-  "Sales Enablement": "bg-fuchsia-100 text-fuchsia-700",
+  Enablement: "bg-fuchsia-100 text-fuchsia-700",
+  "AI Tools": "bg-violet-100 text-violet-700",
   "Office Hours": "bg-lime-100 text-lime-700",
 };
 
 // Fixed display order for bunching resources of the same category together.
 export const TAG_SORT_ORDER: ResourceTag[] = [
   "Office Hours",
-  "Sales Enablement",
+  "Enablement",
+  "AI Tools",
   "Implementation Guide",
   "Learning & Training",
   "Documentation",
@@ -226,7 +230,7 @@ export const products: Product[] = [
         title: "Device Assurance Objection Handling",
         description: "Deck for addressing common customer objections to Device Assurance.",
         url: "https://docs.google.com/presentation/d/1SpdWyfV7f75tJ6HHvhPZDqMkdh1QNJ3ONZB7IQG8Nys/edit?slide=id.g3913a8f5da9_0_1526#slide=id.g3913a8f5da9_0_1526",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
     ],
   },
@@ -317,7 +321,7 @@ export const products: Product[] = [
         title: "Discovery Questions and Objection Handling",
         description: "Deck of discovery questions and objection handling for Workflows conversations.",
         url: "https://docs.google.com/presentation/d/1azah6QOcbDXbZPSbfg77bPi_d0qoaRW2eMc8fsnFwsE/edit?slide=id.g3584d0a65b3_4_789#slide=id.g3584d0a65b3_4_789",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
     ],
   },
@@ -394,7 +398,7 @@ export const products: Product[] = [
         title: "LCM Discovery Questions",
         description: "Discovery questions to use in LCM customer conversations.",
         url: "https://okta.highspot.com/items/635b620ff68a69bb32dda74a",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "LCM Spotlight Session",
@@ -412,19 +416,19 @@ export const products: Product[] = [
         title: "LCM Conversation and Discovery Guide",
         description: "Guide for structuring LCM discovery conversations.",
         url: "https://okta.highspot.com/items/68ac5482275b617552a1303c#4",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "Addressing Common Objections to LCM",
         description: "Deck covering common customer objections to LCM and how to address them.",
         url: "https://okta.highspot.com/items/68ac56a5275b617552a13d21#2",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "Why LCM? Advantages",
         description: "Deck outlining the key advantages of adopting LCM.",
         url: "https://okta.highspot.com/items/68ac562abd36fa2dbc95cf96#1",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "LCM 1-Pager From ScaleU",
@@ -727,7 +731,7 @@ export const products: Product[] = [
         title: "Value Driver for ODA",
         description: "Deck outlining the value drivers for adopting Device Access.",
         url: "https://okta.highspot.com/items/66e33e713cc9aabb17aa0399#14",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
     ],
   },
@@ -786,13 +790,13 @@ export const products: Product[] = [
         title: "ISMP Enablement for CSMs and TAMs",
         description: "Enablement deck preparing CSMs and TAMs to discuss ISMP.",
         url: "https://okta.highspot.com/items/69090b5da09256a504a0b5bd",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "ISMP Sales Enablement for CSMs",
         description: "Sales enablement materials for CSMs covering ISMP.",
         url: "https://okta.highspot.com/items/68b0a8f49f7709397a493ae3",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "ISMP Product Deep Dive",
@@ -804,13 +808,13 @@ export const products: Product[] = [
         title: "ISMP Sales Enablement",
         description: "General sales enablement materials for ISMP.",
         url: "https://okta.highspot.com/items/665e7553a580524b802c4101#10",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "ISMP Customer Talking Points",
         description: "Key talking points for discussing ISMP with customers.",
         url: "https://okta.highspot.com/items/661864c9ffc75a08c08f9889",
-        tags: ["Sales Enablement"],
+        tags: ["Enablement"],
       },
       {
         title: "ISMP Course for Navigating Customer Conversations",

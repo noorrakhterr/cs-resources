@@ -10,7 +10,7 @@ export type QuickResourceGroup = {
   name: string;
   resources: ResourceLink[];
   // When set, the group's detail page renders one column per category
-  // instead of a single flat list (e.g. SBR vs. Phishing Resistant).
+  // instead of a single flat list (e.g. SBR vs. Phishing Resistance).
   categories?: QuickResourceCategory[];
   // Resources shown above the categories, not filed under either one.
   standaloneResources?: ResourceLink[];
@@ -66,13 +66,13 @@ const sbrCategoryResources: ResourceLink[] = [
     title: "SBR Playbook",
     description: "Internal playbook for running Security Business Reviews.",
     url: "https://docs.google.com/presentation/d/1BEr00YXrPp3LAIX30BKGCQUCnUWPrLcqKvgo2BxWbUs/edit?slide=id.g3f5717515d0_0_864#slide=id.g3f5717515d0_0_864",
-    tags: ["Implementation Guide"],
+    tags: ["Enablement"],
   },
   {
     title: "SBR Guide for AE and SEs",
     description: "Internal guide for Account Executives and Solutions Engineers on SBRs.",
     url: "https://docs.google.com/presentation/d/1kqst-mk1HjHqf-_TJtL9PtFc4XESUvsJ_uDXBX81rAk/edit?slide=id.p#slide=id.p",
-    tags: ["Implementation Guide"],
+    tags: ["Enablement"],
   },
   {
     title: "SBR Training",
@@ -84,17 +84,17 @@ const sbrCategoryResources: ResourceLink[] = [
     title: "SBR Assist Gem",
     description: "Internal AI assistant for drafting and supporting SBRs.",
     url: "https://vertexaisearch.cloud.google.com/home/cid/cd50f96b-072d-4a0a-9ac3-8699ac11797f/r/agent/7944332289853326822/session/-",
-    tags: ["Implementation Guide"],
+    tags: ["AI Tools"],
   },
   {
     title: "SBR Quality Checker Agent",
     description: "Internal AI agent for reviewing SBR quality before delivery.",
     url: "https://vertexaisearch.cloud.google.com/home/cid/cd50f96b-072d-4a0a-9ac3-8699ac11797f/r/agent/9576353426048634315/session/-",
-    tags: ["Implementation Guide"],
+    tags: ["AI Tools"],
   },
 ];
 
-const phishingResistantCategoryResources: ResourceLink[] = [
+const phishingResistanceInternalResources: ResourceLink[] = [
   {
     title: "Phishing Resistance Field Guide",
     description: "Internal field guide for positioning phishing-resistant authentication.",
@@ -107,6 +107,9 @@ const phishingResistantCategoryResources: ResourceLink[] = [
     url: "https://okta.highspot.com/items/6aa975a6d4cde0ba48bbdaa0#1",
     tags: ["Implementation Guide"],
   },
+];
+
+const phishingResistanceExternalResources: ResourceLink[] = [
   {
     title: "10 Step Phishing Resistance Success Factors (Support Center)",
     description: "Customer-facing article on the 10 success factors for phishing resistance.",
@@ -121,9 +124,14 @@ const phishingResistantCategoryResources: ResourceLink[] = [
   },
 ];
 
-const sbrPhishingResistantCategories: QuickResourceCategory[] = [
-  { name: "SBR", resources: sbrCategoryResources },
-  { name: "Phishing Resistant", resources: phishingResistantCategoryResources },
+const sbrInternalResources: ResourceLink[] = sbrCategoryResources;
+const sbrExternalResources: ResourceLink[] = [];
+
+const sbrPhishingResistanceCategories: QuickResourceCategory[] = [
+  { name: "SBR — Internal", resources: sbrInternalResources },
+  { name: "SBR — External", resources: sbrExternalResources },
+  { name: "Phishing Resistance — Internal", resources: phishingResistanceInternalResources },
+  { name: "Phishing Resistance — External", resources: phishingResistanceExternalResources },
 ];
 
 export const quickResources: QuickResourceGroup[] = [
@@ -143,14 +151,15 @@ export const quickResources: QuickResourceGroup[] = [
     resources: getResourcesByTag("Slide Deck"),
   },
   {
-    id: "sbr-phishing-resistant",
-    name: "SBR & Phishing Resistant",
+    id: "sbr-phishing-resistance",
+    name: "SBR & Phishing Resistance",
     resources: [
       ...successHubDemos,
       ...sbrCategoryResources,
-      ...phishingResistantCategoryResources,
+      ...phishingResistanceInternalResources,
+      ...phishingResistanceExternalResources,
     ],
-    categories: sbrPhishingResistantCategories,
+    categories: sbrPhishingResistanceCategories,
     standaloneResources: successHubDemos,
     relatedProductIds: ["fastpass", "oie-upgrade"],
   },

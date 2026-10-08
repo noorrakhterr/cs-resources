@@ -116,7 +116,7 @@ function App() {
                 {activeQuickGroup.standaloneResources && activeQuickGroup.standaloneResources.length > 0 && (
                   <ResourceColumn links={activeQuickGroup.standaloneResources} activeTags={[]} />
                 )}
-                <div className="flex flex-col gap-6 sm:flex-row">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   {activeQuickGroup.categories.map((category) => (
                     <ResourceColumn
                       key={category.name}
