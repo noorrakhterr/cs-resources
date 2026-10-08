@@ -886,6 +886,18 @@ export const products: Product[] = [
         url: "https://support.okta.com/help/s/article/okta-s-identity-maturity-checklist?language=en_US",
         tags: ["Implementation Guide"],
       },
+      {
+        title: "New Success Hub Demo",
+        description: "Demo video of the new Success Hub experience.",
+        url: "https://www.youtube.com/watch?v=emezaZWS6X8&t=1s",
+        tags: ["Demo"],
+      },
+      {
+        title: "Success Hub Security Demo",
+        description: "Demo video of Success Hub's security capabilities.",
+        url: "https://drive.google.com/file/d/1j8AxDF5DjCsp3-5dudgTlgRZ5iOIhSsE/view?resourcekey",
+        tags: ["Demo"],
+      },
     ],
     internal: [
       {

@@ -26,6 +26,7 @@ function App() {
   function openProduct(id: string) {
     setActiveProductId(id);
     setView("product");
+    setActiveTags([]);
   }
 
   function openQuickResource(id: string) {
@@ -89,18 +90,42 @@ function App() {
           <div>
             <SectionHeader title={activeQuickGroup.name} onBack={goHome} backLabel="Home" />
 
+            {activeQuickGroup.relatedProductIds && activeQuickGroup.relatedProductIds.length > 0 && (
+              <div className="mb-6 flex flex-wrap gap-2">
+                {activeQuickGroup.relatedProductIds.map((id) => {
+                  const related = products.find((p) => p.id === id);
+                  if (!related) return null;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => openProduct(id)}
+                      className="rounded-full border border-okta-blue/30 bg-okta-blue/5 px-3 py-1.5 text-xs font-medium text-okta-blue transition-colors hover:bg-okta-blue/10"
+                    >
+                      See {related.name}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
             {activeQuickGroup.id === "slide-decks" ? (
               <SlideDeckGrid resources={activeQuickGroup.resources} />
             ) : activeQuickGroup.categories ? (
-              <div className="flex flex-col gap-6 sm:flex-row">
-                {activeQuickGroup.categories.map((category) => (
-                  <ResourceColumn
-                    key={category.name}
-                    title={category.name}
-                    links={category.resources}
-                    activeTags={[]}
-                  />
-                ))}
+              <div className="flex flex-col gap-6">
+                {activeQuickGroup.standaloneResources && activeQuickGroup.standaloneResources.length > 0 && (
+                  <ResourceColumn links={activeQuickGroup.standaloneResources} activeTags={[]} />
+                )}
+                <div className="flex flex-col gap-6 sm:flex-row">
+                  {activeQuickGroup.categories.map((category) => (
+                    <ResourceColumn
+                      key={category.name}
+                      title={category.name}
+                      links={category.resources}
+                      activeTags={[]}
+                    />
+                  ))}
+                </div>
               </div>
             ) : (
               <ResourceColumn

@@ -12,7 +12,26 @@ export type QuickResourceGroup = {
   // When set, the group's detail page renders one column per category
   // instead of a single flat list (e.g. SBR vs. Phishing Resistant).
   categories?: QuickResourceCategory[];
+  // Resources shown above the categories, not filed under either one.
+  standaloneResources?: ResourceLink[];
+  // Product ids with a "See <product>" tab linking to that product's full page.
+  relatedProductIds?: string[];
 };
+
+const successHubDemos: ResourceLink[] = [
+  {
+    title: "New Success Hub Demo",
+    description: "Demo video of the new Success Hub experience.",
+    url: "https://www.youtube.com/watch?v=emezaZWS6X8&t=1s",
+    tags: ["Demo"],
+  },
+  {
+    title: "Success Hub Security Demo",
+    description: "Demo video of Success Hub's security capabilities.",
+    url: "https://drive.google.com/file/d/1j8AxDF5DjCsp3-5dudgTlgRZ5iOIhSsE/view?resourcekey",
+    tags: ["Demo"],
+  },
+];
 
 const usefulScaleResources: ResourceLink[] = [
   {
@@ -39,12 +58,72 @@ const usefulScaleResources: ResourceLink[] = [
     url: "https://docs.google.com/document/d/1fBFfK7V12C2VllQkgi2-Xprxo9Rt-HfmK9yNMFQAnAo/edit?tab=t.0",
     tags: ["Implementation Guide"],
   },
+  ...successHubDemos,
 ];
 
-// TODO: Resources pending — populate SBR and Phishing Resistant with real links.
+const sbrCategoryResources: ResourceLink[] = [
+  {
+    title: "SBR Playbook",
+    description: "Internal playbook for running Security Business Reviews.",
+    url: "https://docs.google.com/presentation/d/1BEr00YXrPp3LAIX30BKGCQUCnUWPrLcqKvgo2BxWbUs/edit?slide=id.g3f5717515d0_0_864#slide=id.g3f5717515d0_0_864",
+    tags: ["Implementation Guide"],
+  },
+  {
+    title: "SBR Guide for AE and SEs",
+    description: "Internal guide for Account Executives and Solutions Engineers on SBRs.",
+    url: "https://docs.google.com/presentation/d/1kqst-mk1HjHqf-_TJtL9PtFc4XESUvsJ_uDXBX81rAk/edit?slide=id.p#slide=id.p",
+    tags: ["Implementation Guide"],
+  },
+  {
+    title: "SBR Training",
+    description: "Internal training course on running Security Business Reviews.",
+    url: "https://oktau.edcast.com/insights/ECL-56eb7220-e02f-42ee-834e-a21d59c513c0",
+    tags: ["Learning & Training"],
+  },
+  {
+    title: "SBR Assist Gem",
+    description: "Internal AI assistant for drafting and supporting SBRs.",
+    url: "https://vertexaisearch.cloud.google.com/home/cid/cd50f96b-072d-4a0a-9ac3-8699ac11797f/r/agent/7944332289853326822/session/-",
+    tags: ["Implementation Guide"],
+  },
+  {
+    title: "SBR Quality Checker Agent",
+    description: "Internal AI agent for reviewing SBR quality before delivery.",
+    url: "https://vertexaisearch.cloud.google.com/home/cid/cd50f96b-072d-4a0a-9ac3-8699ac11797f/r/agent/9576353426048634315/session/-",
+    tags: ["Implementation Guide"],
+  },
+];
+
+const phishingResistantCategoryResources: ResourceLink[] = [
+  {
+    title: "Phishing Resistance Field Guide",
+    description: "Internal field guide for positioning phishing-resistant authentication.",
+    url: "https://okta.highspot.com/items/6ab6c4eea4f69a5c3c55738c#19",
+    tags: ["Implementation Guide"],
+  },
+  {
+    title: "10 Step Phishing Resistance Success Factors",
+    description: "Internal guide to the 10 success factors for phishing resistance.",
+    url: "https://okta.highspot.com/items/6aa975a6d4cde0ba48bbdaa0#1",
+    tags: ["Implementation Guide"],
+  },
+  {
+    title: "10 Step Phishing Resistance Success Factors (Support Center)",
+    description: "Customer-facing article on the 10 success factors for phishing resistance.",
+    url: "https://support.okta.com/help/s/article/10-step-phishing-resistance-success-factors?language=en_US",
+    tags: ["Documentation"],
+  },
+  {
+    title: "Phishing Resistant Snapshot",
+    description: "Customer-facing snapshot summarizing phishing-resistant authentication.",
+    url: "https://app.matik.io/create/templates/10809/slides/732387",
+    tags: ["Slide Deck"],
+  },
+];
+
 const sbrPhishingResistantCategories: QuickResourceCategory[] = [
-  { name: "SBR", resources: [] },
-  { name: "Phishing Resistant", resources: [] },
+  { name: "SBR", resources: sbrCategoryResources },
+  { name: "Phishing Resistant", resources: phishingResistantCategoryResources },
 ];
 
 export const quickResources: QuickResourceGroup[] = [
@@ -66,7 +145,13 @@ export const quickResources: QuickResourceGroup[] = [
   {
     id: "sbr-phishing-resistant",
     name: "SBR & Phishing Resistant",
-    resources: sbrPhishingResistantCategories.flatMap((c) => c.resources),
+    resources: [
+      ...successHubDemos,
+      ...sbrCategoryResources,
+      ...phishingResistantCategoryResources,
+    ],
     categories: sbrPhishingResistantCategories,
+    standaloneResources: successHubDemos,
+    relatedProductIds: ["fastpass", "oie-upgrade"],
   },
 ];
