@@ -91,6 +91,17 @@ function App() {
 
             {activeQuickGroup.id === "slide-decks" ? (
               <SlideDeckGrid resources={activeQuickGroup.resources} />
+            ) : activeQuickGroup.categories ? (
+              <div className="flex flex-col gap-6 sm:flex-row">
+                {activeQuickGroup.categories.map((category) => (
+                  <ResourceColumn
+                    key={category.name}
+                    title={category.name}
+                    links={category.resources}
+                    activeTags={[]}
+                  />
+                ))}
+              </div>
             ) : (
               <ResourceColumn
                 links={activeQuickGroup.resources}

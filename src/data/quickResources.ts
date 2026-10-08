@@ -1,9 +1,17 @@
 import { getResourcesByTag, type ResourceLink } from "./products";
 
+export type QuickResourceCategory = {
+  name: string;
+  resources: ResourceLink[];
+};
+
 export type QuickResourceGroup = {
   id: string;
   name: string;
   resources: ResourceLink[];
+  // When set, the group's detail page renders one column per category
+  // instead of a single flat list (e.g. SBR vs. Phishing Resistant).
+  categories?: QuickResourceCategory[];
 };
 
 const usefulScaleResources: ResourceLink[] = [
@@ -33,6 +41,12 @@ const usefulScaleResources: ResourceLink[] = [
   },
 ];
 
+// TODO: Resources pending — populate SBR and Phishing Resistant with real links.
+const sbrPhishingResistantCategories: QuickResourceCategory[] = [
+  { name: "SBR", resources: [] },
+  { name: "Phishing Resistant", resources: [] },
+];
+
 export const quickResources: QuickResourceGroup[] = [
   {
     id: "office-hours",
@@ -48,5 +62,11 @@ export const quickResources: QuickResourceGroup[] = [
     id: "slide-decks",
     name: "Slide Deck Repository",
     resources: getResourcesByTag("Slide Deck"),
+  },
+  {
+    id: "sbr-phishing-resistant",
+    name: "SBR & Phishing Resistant",
+    resources: sbrPhishingResistantCategories.flatMap((c) => c.resources),
+    categories: sbrPhishingResistantCategories,
   },
 ];
