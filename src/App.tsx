@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Header } from "./components/Header";
 import { NexusGeminiBanner } from "./components/NexusGeminiBanner";
+import { DirectoryDetail } from "./components/DirectoryDetail";
+import { DirectoryGrid } from "./components/DirectoryGrid";
 import { ProductGrid } from "./components/ProductGrid";
 import { QuickResourceGrid } from "./components/QuickResourceGrid";
 import { ResourceCenter } from "./components/ResourceCenter";
@@ -11,17 +13,23 @@ import { TagFilterDropdown } from "./components/TagFilterDropdown";
 import { products, type ResourceTag } from "./data/products";
 import { quickResources } from "./data/quickResources";
 import { sources } from "./data/sources";
+import { teams } from "./data/teams";
+import { useCases } from "./data/useCases";
 
-type View = "home" | "product" | "quick";
+type View = "home" | "product" | "quick" | "team" | "useCase";
 
 function App() {
   const [view, setView] = useState<View>("home");
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const [activeQuickId, setActiveQuickId] = useState<string | null>(null);
+  const [activeTeamId, setActiveTeamId] = useState<string | null>(null);
+  const [activeUseCaseId, setActiveUseCaseId] = useState<string | null>(null);
   const [activeTags, setActiveTags] = useState<ResourceTag[]>([]);
 
   const activeProduct = products.find((p) => p.id === activeProductId) ?? null;
   const activeQuickGroup = quickResources.find((g) => g.id === activeQuickId) ?? null;
+  const activeTeam = teams.find((t) => t.id === activeTeamId) ?? null;
+  const activeUseCase = useCases.find((u) => u.id === activeUseCaseId) ?? null;
 
   function openProduct(id: string) {
     setActiveProductId(id);
@@ -32,6 +40,16 @@ function App() {
   function openQuickResource(id: string) {
     setActiveQuickId(id);
     setView("quick");
+  }
+
+  function openTeam(id: string) {
+    setActiveTeamId(id);
+    setView("team");
+  }
+
+  function openUseCase(id: string) {
+    setActiveUseCaseId(id);
+    setView("useCase");
   }
 
   function goHome() {
@@ -56,6 +74,12 @@ function App() {
             <NexusGeminiBanner />
             <QuickResourceGrid groups={quickResources} onSelect={openQuickResource} />
             <ProductGrid products={products} onSelect={openProduct} />
+            <DirectoryGrid title="Teams" entries={teams} onSelect={openTeam} />
+            <DirectoryGrid
+              title="Use Cases & Situations"
+              entries={useCases}
+              onSelect={openUseCase}
+            />
           </>
         )}
 
@@ -134,6 +158,20 @@ function App() {
                 showTags={false}
               />
             )}
+          </div>
+        )}
+
+        {view === "team" && activeTeam && (
+          <div>
+            <SectionHeader title={activeTeam.name} onBack={goHome} backLabel="Home" />
+            <DirectoryDetail entry={activeTeam} />
+          </div>
+        )}
+
+        {view === "useCase" && activeUseCase && (
+          <div>
+            <SectionHeader title={activeUseCase.name} onBack={goHome} backLabel="Home" />
+            <DirectoryDetail entry={activeUseCase} />
           </div>
         )}
       </main>
