@@ -16,7 +16,7 @@ import { sources } from "./data/sources";
 import { teams } from "./data/teams";
 import { useCases } from "./data/useCases";
 
-type View = "home" | "product" | "quick" | "team" | "useCase";
+type View = "home" | "product" | "quick" | "teamsList" | "useCasesList" | "team" | "useCase";
 
 function App() {
   const [view, setView] = useState<View>("home");
@@ -38,6 +38,14 @@ function App() {
   }
 
   function openQuickResource(id: string) {
+    if (id === "teams") {
+      setView("teamsList");
+      return;
+    }
+    if (id === "use-cases") {
+      setView("useCasesList");
+      return;
+    }
     setActiveQuickId(id);
     setView("quick");
   }
@@ -63,6 +71,12 @@ function App() {
     );
   }
 
+  const quickResourceGroupsWithDirectories = [
+    ...quickResources,
+    { id: "teams", name: "Teams", resources: [], hasContent: true },
+    { id: "use-cases", name: "Use Cases & Situations", resources: [], hasContent: true },
+  ];
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header onLogoClick={goHome} />
@@ -72,14 +86,11 @@ function App() {
           <>
             <ResourceCenter sources={sources} />
             <NexusGeminiBanner />
-            <QuickResourceGrid groups={quickResources} onSelect={openQuickResource} />
-            <ProductGrid products={products} onSelect={openProduct} />
-            <DirectoryGrid title="Teams" entries={teams} onSelect={openTeam} />
-            <DirectoryGrid
-              title="Use Cases & Situations"
-              entries={useCases}
-              onSelect={openUseCase}
+            <QuickResourceGrid
+              groups={quickResourceGroupsWithDirectories}
+              onSelect={openQuickResource}
             />
+            <ProductGrid products={products} onSelect={openProduct} />
           </>
         )}
 
@@ -161,16 +172,38 @@ function App() {
           </div>
         )}
 
+        {view === "teamsList" && (
+          <div>
+            <SectionHeader title="Teams" onBack={goHome} backLabel="Home" />
+            <DirectoryGrid entries={teams} onSelect={openTeam} />
+          </div>
+        )}
+
+        {view === "useCasesList" && (
+          <div>
+            <SectionHeader title="Use Cases & Situations" onBack={goHome} backLabel="Home" />
+            <DirectoryGrid entries={useCases} onSelect={openUseCase} />
+          </div>
+        )}
+
         {view === "team" && activeTeam && (
           <div>
-            <SectionHeader title={activeTeam.name} onBack={goHome} backLabel="Home" />
+            <SectionHeader
+              title={activeTeam.name}
+              onBack={() => setView("teamsList")}
+              backLabel="Teams"
+            />
             <DirectoryDetail entry={activeTeam} />
           </div>
         )}
 
         {view === "useCase" && activeUseCase && (
           <div>
-            <SectionHeader title={activeUseCase.name} onBack={goHome} backLabel="Home" />
+            <SectionHeader
+              title={activeUseCase.name}
+              onBack={() => setView("useCasesList")}
+              backLabel="Use Cases & Situations"
+            />
             <DirectoryDetail entry={activeUseCase} />
           </div>
         )}
